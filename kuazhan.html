@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>测试ajax和跨站访问</title>
+	<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$.ajax({
+				type:"GET",
+				url:"http://baidu.com/index.php",
+				success:function(data){
+					alert("sucess!");
+				},
+				error:function(){
+					alert("fail!!,请刷新试试");
+				}
+			});
+		});
+	</script>
+</head>
+<body>
+	<h1>测试跨域访问</h1>
+</body>
+</html>
