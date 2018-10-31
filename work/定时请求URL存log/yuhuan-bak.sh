@@ -1,20 +1,35 @@
 #!/bin/bash
+source_dir=./1.txt   
+#日志记录位置
+source_url=url
+#URL请求位置
+#脚本会请求URL，如果请求不成功，会尝试继续请求四次
 v_time=`date "+%F %T"`
+ccurl(){
+	data=`curl ${source_url}`
+}
 curlwd(){
 	i=0
-	data=`order.php?act=ajax_order_detection_auto`
+	if [ ! -f ${source_dir} ]
+	then
+		touch $source_dir
+	fi
 	while(( $i<5 ))
 	do
+		ccurl
 		if [ $? -eq 0 ]
 		then
-			echo $data------$v_time >>1.txt
+			echo 'URL返回值:'$data------'返回时间:'$v_time >>$source_dir
 			break
 		else
 			let i++
 		fi
-		echo $i
 	done
+	#echo ‘执行了次数’$i
+	if [ $i -eq 4 ]
+	then
+		echo 'URL无法请求或者不稳定'$data------'返回时间:'$v_time >>$source_dir
+	fi
 }
 curlwd
-cat 1.txt
-rm -rf 1.txt
+cat $source_dir
