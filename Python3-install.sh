@@ -3,7 +3,7 @@ wget https://www.python.org/ftp/python/3.6.3/Python-3.6.3.tgz
 
 tar -zxvf Python-3.6.3.tgz -C /usr/local/
 mv /usr/local/Python-3.6.3/ /usr/local/python3
-cd /usr/local/python3/Python-3.6.3
+cd /usr/local/python3/
 yum install -y gcc zlib zlib-devel
 ./configure -with-ssl
 echo "-----------------code------------------:"$?
